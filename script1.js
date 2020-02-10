@@ -12,7 +12,7 @@ function typeSelector(){
   let typeArr = [];
   var inputLength; 
   var passwordLength = getPasswordLength(); 
-  alert(passwordLength);
+  alert (passwordLength);
   // Input must be valid integer between 8 and 150
   /* var upperType = confirm("Click Ok to include uppercase letters");
   var lowerType = confirm("Click Ok to include lower case numbers.");
@@ -34,17 +34,13 @@ function getPasswordLength(){
     let counter = 1;
     do {
         let userLengthInput = prompt("Enter the number of characters. Must be between 8 and 50 inclusively.")
-        alert(Number(userLengthInput));
+        alert(userLengthInput);
         if(isValidLengthInput(userLengthInput)){
           validInput = true;
           return userLengthInput;
         } else{
+          alert("Not a valid input. Please try again");
           counter++;
-          if(counter < 3){
-            alert("Not a valid input. Please try again"); 
-          }
-          
-          
         }
 
       } while (validInput === false && counter <=3) 
@@ -59,10 +55,8 @@ function getPasswordLength(){
 
 // determine if password length input is an integer between 8 and 150 as instructed
 function isValidLengthInput(inputToCheck){
-  var isLength = isValidLength(inputToCheck);
-  alert(isLength + " is the length");
+  var isLength = isValidType(inputToCheck);
   let isValidType = isInputInteger(inputToCheck);
-
   let isAllValid = (isLength && isValidType);
   
   
@@ -71,24 +65,17 @@ function isValidLengthInput(inputToCheck){
   
 }
 
-
 // This function determines if the password length input from the user is an integer
 // using one method for IE and one method for other common bowsers
 function isInputInteger(inputToCheck){
-  var numberToCheck = Number(inputToCheck);
-  return (typeof(numberToCheck) === "number" && isFinite(numberToCheck) && Math.floor(numberToCheck) === numberToCheck);
+  
+  return (typeof(inputToCheck) === "number" && isFinite(inputToCheck) && Math.floor(inputToCheck) === inputToCheck);
 } 
 
 // This function validates the password length input is between 8 and 150 per instuctions
 function isValidLength(inputToCheck){
   return (inputToCheck >=8 && inputToCheck <= 150 );
 }
-
-
-
-
-
-
 
 
 
@@ -101,13 +88,6 @@ function writePassword() {
   passwordText.value = password;
 
 }
-
-
-
-
-
-
-
 
 
 
