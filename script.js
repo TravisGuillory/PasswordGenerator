@@ -10,20 +10,20 @@ The users response for length will need to be valdated as a whole number  from 8
 
 function typeSelector(){
   let typeArr = [];
-  var inputLength; 
-  var passwordLength = getPasswordLength(); 
-  alert(passwordLength);
-  // Input must be valid integer between 8 and 150
-  /* var upperType = confirm("Click Ok to include uppercase letters");
-  var lowerType = confirm("Click Ok to include lower case numbers.");
-  var numberType = confirm("Click Ok to include numbers");
-  var specialType = confirm("Select Ok to include special characters");
+  var passwordLength = getPasswordLength(); // Input must be valid integer between 8 and 150
+  if(passwordLength){
+    var upperType = confirm("Click Ok to include uppercase letters");
+    var lowerType = confirm("Click Ok to include lower case numbers.");
+    var numberType = confirm("Click Ok to include numbers");
+    var specialType = confirm("Select Ok to include special characters");
+    
+    var selectedTypesArray = [passwordLength, upperType, lowerType, numberType, specialType];
+  }
   
-  var selectedTypes = [passwordLength, upperType, lowerType, numberType, specialType];
-  alert(selectedTypes); */
+  
 }
 
-// Function to validate the the xollect user input for passwod length
+// Function to validate the the collect user input for passwod length
 // This iput type will be a string regardless of input
 // Will require converting to a number and validation as a integer, and between 8 and 50
   
@@ -31,46 +31,32 @@ function getPasswordLength(){
   
   var validInput = false;
   // Loop to allow the user 3 attempt to enter a valid 
-    let counter = 1;
-    do {
+    
+    for(let i= 0; i<3; i++){
         let userLengthInput = prompt("Enter the number of characters. Must be between 8 and 50 inclusively.")
-        alert(Number(userLengthInput));
         if(isValidLengthInput(userLengthInput)){
           validInput = true;
           return userLengthInput;
         } else{
-          counter++;
-          if(counter < 3){
+          
+          if(i < 2){
             alert("Not a valid input. Please try again"); 
-          }
-          
-          
+          }         
         }
-
-      } while (validInput === false && counter <=3) 
+      } 
     
     alert("Maximum number of attempts has been reached. ")
 
 
   }
 
-
-
-
 // determine if password length input is an integer between 8 and 150 as instructed
 function isValidLengthInput(inputToCheck){
   var isLength = isValidLength(inputToCheck);
-  alert(isLength + " is the length");
   let isValidType = isInputInteger(inputToCheck);
-
   let isAllValid = (isLength && isValidType);
-  
-  
-
   return isAllValid;
-  
 }
-
 
 // This function determines if the password length input from the user is an integer
 // using one method for IE and one method for other common bowsers
