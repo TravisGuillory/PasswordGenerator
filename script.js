@@ -4,9 +4,13 @@ var generateBtn = document.querySelector("#generate");
 // Add an event listener for the click event of the Generate Passwor button. 
 generateBtn.addEventListener("click", typeSelector);
 
+
+
+
 /* Code to excute when the Generate Password is pressed.
 Prompt the user for password attributtes. Length, upper case, lower case, numbers, special characters  
 The users response for length will need to be valdated as a whole number  from 8 - 150*/
+
 
 function typeSelector(){
   let selectionsArr = [];
@@ -14,13 +18,27 @@ function typeSelector(){
   // Only allow additional selections  if user submits a valid length input
   // Push results of each prompt to the selections array
   if(passwordLength){
-    selectionsArr.p
-    var upperType = confirm("Click Ok to include uppercase letters");
-    var lowerType = confirm("Click Ok to include lower case numbers.");
-    var numberType = confirm("Click Ok to include numbers");
-    var specialType = confirm("Select Ok to include special characters");
     
-     [passwordLength, upperType, lowerType, numberType, specialType];
+    var upperType = confirm("Click Ok to include uppercase letters.");
+    if(upperType){
+      selectionsArr.push("upper");
+    }
+    var lowerType = confirm("Click Ok to include lower case letters.");
+    if(lowerType){
+      selectionsArr.push("lower");
+    }
+    var numberType = confirm("Click Ok to include numbers.");
+    if(numberType){
+      selectionsArr.push("number")
+    }
+    var specialType = confirm("Select Ok to include special characters.");
+    if(specialType){
+      selectionsArr.push("special");
+    }
+    
+    
+    writePassword(passwordLength, selectionsArr);
+    
   }
 }
 
@@ -77,24 +95,79 @@ function isValidLength(inputToCheck){
 
 
 // Write password to the #password input
-function writePassword() {
+// Functin takes an array as an argument that contains the 
+// selection results of the prompts for length an each
+// character type to inlclude
+function writePassword(passwordLength, selectionsArr) {
+  // declare array variables for each character type.
+  // using the min and max ascii  code for eac type
+  let uppers = [65, 90];
+  let lowers = [97, 122];
+  let numbers = [48, 57];
+  let specials = [35, 47];
+  var totalCharString = "";   
+  var totalCharsRandom = "";
   
-  var password = generatePassword();
+  // Determine which character sets to use
+  selectionsArr.forEach(element => {
+      switch(element){
+        case "number":
+          totalCharString.concat(randomizeArr(numbers));
+          break;
+        case "upper":
+          totalCharString.concat(randomizeArr(uppers));
+          break;
+        case "lower":
+          totalCharString.concat(randomizeArr(lowers));
+          break;
+        case "special":
+          totalCharString.concat(randomizeArr(specials));
+          break;
+        
+      }
+
+  });
+
+  // randomize the combinded total char  string
+  totalCharsRandom =  randomizeArr(totalCharString.split(""));
+console.log(totalCharsRandom);
+
+  /* var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
-  passwordText.value = password;
+  passwordText.value = password; */
 
 }
 
 
+//function to randomize the values in an array
+// source https://medium.com/@nitinpatel_20236/how-to-shuffle-correctly-shuffle-an-array-in-javascript-15ea3f84bfb
+// Nitan Patel How To Correctly Shuffle An Array in JavaScript Apr 29, 2019
+// Fisher-Yates Algorithm
+// Shuffles the array randomly using each value only once
 
+function randomizeArr(checkArr){
+  var chars = "";
+  var randomChars = []; 
+  var randomCharsString =""
+  
 
-
-
-
-
-
-
-
-
+      for(let i = Math.min(...checkArr); i < Math.max(...checkArr); i++){
+        chars += String.fromCharCode(i);
+        randomChars = chars.split("");
+    }
+    
+      
+    for(let j = randomChars.length-1; j > 0; j--){
+        const r = Math.floor(Math.random() * j);
+        const tempChar = randomChars[j];
+        randomChars[j] = randomChars[r];
+        randomChars[r] = tempChar;
+    }
+    
+    randomCharsString = randomChars.join("");
+    console.log(randomCharsString);
+    return randomCharsString;
+  
+  }
 
