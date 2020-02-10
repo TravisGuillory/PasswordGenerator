@@ -130,12 +130,11 @@ function writePassword(passwordLength, selectionsArr) {
 
   // randomize the combinded total char  string
   totalCharsRandom =  randomizeArr(totalCharString.split(""));
-console.log(totalCharsRandom);
+  console.log(totalCharsRandom);
+  var password = generatePassword(passwordLength,  totalCharsRandom);
+  //var passwordText = document.querySelector("#password");
 
-  /* var password = generatePassword();
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password; */
+  //passwordText.value = password; 
 
 }
 
@@ -171,3 +170,16 @@ function randomizeArr(checkArr){
   
   }
 
+// function to select characters to be added to the password 
+
+function generatePassword(passwordLength, randomCharsString){
+  var password = "";
+  var stringLen = randomCharsString.length;
+  var randNum = Math.floor(Math.random() * stringlen);
+
+  for(let i = 1; i<passwordLength; i++){
+    password.concat(randomCharsString[randNum]);
+  }
+      return password;
+
+}
