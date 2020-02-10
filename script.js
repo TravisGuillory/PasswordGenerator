@@ -9,18 +9,19 @@ Prompt the user for password attributtes. Length, upper case, lower case, number
 The users response for length will need to be valdated as a whole number  from 8 - 150*/
 
 function typeSelector(){
-  let typeArr = [];
+  let selectionsArr = [];
   var passwordLength = getPasswordLength(); // Input must be valid integer between 8 and 150
+  // Only allow additional selections  if user submits a valid length input
+  // Push results of each prompt to the selections array
   if(passwordLength){
+    selectionsArr.p
     var upperType = confirm("Click Ok to include uppercase letters");
     var lowerType = confirm("Click Ok to include lower case numbers.");
     var numberType = confirm("Click Ok to include numbers");
     var specialType = confirm("Select Ok to include special characters");
     
-    var selectedTypesArray = [passwordLength, upperType, lowerType, numberType, specialType];
+     [passwordLength, upperType, lowerType, numberType, specialType];
   }
-  
-  
 }
 
 // Function to validate the the collect user input for passwod length
@@ -44,11 +45,8 @@ function getPasswordLength(){
           }         
         }
       } 
-    
     alert("Maximum number of attempts has been reached. ")
-
-
-  }
+}
 
 // determine if password length input is an integer between 8 and 150 as instructed
 function isValidLengthInput(inputToCheck){
