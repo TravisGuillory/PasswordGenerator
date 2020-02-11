@@ -4,17 +4,21 @@ var generateBtn = document.querySelector("#generate");
 // Add an event listener for the click event of the Generate Passwor button. 
 generateBtn.addEventListener("click", typeSelector);
 
+// declare global variable for password liength min an max 
+var passwordMinLen = 8;
+var passwordMaxLen = 150; 
 
 
+/* ------------------ User Input Sectio ----------------------------------------------*/
 
 /* Code to excute when the Generate Password is pressed.
 Prompt the user for password attributtes. Length, upper case, lower case, numbers, special characters  
 The users response for length will need to be valdated as a whole number  from 8 - 150*/
 
-
 function typeSelector(){
   let selectionsArr = [];
   var passwordLength = getPasswordLength(); // Input must be valid integer between 8 and 150
+  
   // Only allow additional selections  if user submits a valid length input
   // Push results of each prompt to the selections array
   if(passwordLength){
@@ -42,7 +46,11 @@ function typeSelector(){
   }
 }
 
-// Function to validate the the collect user input for passwod length
+/* --------------------------End of user input section-------------------------------- */
+
+
+/* ---------------------------Data Validation of user input section ----------------- */
+// Function to validate the collected user input for passwod length
 // This iput type will be a string regardless of input
 // Will require converting to a number and validation as a integer, and between 8 and 50
   
@@ -83,16 +91,15 @@ function isInputInteger(inputToCheck){
 
 // This function validates the password length input is between 8 and 150 per instuctions
 function isValidLength(inputToCheck){
-  return (inputToCheck >=8 && inputToCheck <= 150 );
+  return (inputToCheck >=passwordMinLen && inputToCheck <= passwordMaxLen );
 }
 
+/* ---------------------End of Data Validation of user input section ----------------- */
 
 
 
 
-
-
-
+/* ---------------------------Generate Password Section ---------- ----------------- */
 
 // Write password to the #password input
 // Functin takes an array as an argument that contains the 
@@ -181,5 +188,6 @@ function generatePassword(passwordLength, randomCharsString){
     password.concat(randomCharsString[randNum]);
   }
       return password;
-
 }
+
+/* ---------------------------End of Password Generation Section  ----------------- */
