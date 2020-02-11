@@ -10,4 +10,4 @@ Iput is validated to determine a correct integer length input and at least one c
 
 GiHub repository is https://github.com/TravisGuillory/PasswordGenerator
 
-[Screenshot Image](screeshot.png)
+![screenshot](https://user-images.githubusercontent.com/57569746/74215974-95b1f900-4c68-11ea-99e2-afe712908ac9.png)
